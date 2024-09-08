@@ -1,5 +1,5 @@
-#ifndef LaunchCtl_BridgingHeader_h
-#define LaunchCtl_BridgingHeader_h
+#ifndef MachLaunchD_Bridging_Header_h
+#define MachLaunchD_Bridging_Header_h
 
 #include <xpc/xpc.h>
 #include <mach/mach.h>
@@ -12,4 +12,4 @@ extern int xpc_pipe_routine(xpc_pipe_t pipe, xpc_object_t message, xpc_object_t*
 extern const char* xpc_strerror(int error);
 extern kern_return_t mach_ports_lookup(task_t task, mach_port_t **ports, mach_msg_type_number_t *portsCnt);
 
-#endif /* LaunchCtl_BridgingHeader_h */
+#endif /* MachLaunchD_Bridging_Header_h */

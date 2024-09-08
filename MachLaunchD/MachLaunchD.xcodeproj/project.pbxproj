@@ -10,7 +10,6 @@
 		282BD4DE2C8E21E100497103 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282BD4DD2C8E21E100497103 /* main.swift */; };
 		282BD4E52C8E222000497103 /* LaunchCtl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282BD4E42C8E222000497103 /* LaunchCtl.swift */; };
 		282BD4E72C8E223D00497103 /* MachServiceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282BD4E62C8E223D00497103 /* MachServiceInfo.swift */; };
-		282BD4EA2C8E226100497103 /* example.m in Sources */ = {isa = PBXBuildFile; fileRef = 282BD4E92C8E226100497103 /* example.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,7 +30,6 @@
 		282BD4E42C8E222000497103 /* LaunchCtl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchCtl.swift; sourceTree = "<group>"; };
 		282BD4E62C8E223D00497103 /* MachServiceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MachServiceInfo.swift; sourceTree = "<group>"; };
 		282BD4E82C8E226100497103 /* MachLaunchD-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MachLaunchD-Bridging-Header.h"; sourceTree = "<group>"; };
-		282BD4E92C8E226100497103 /* example.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = example.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,7 +64,6 @@
 			children = (
 				282BD4E42C8E222000497103 /* LaunchCtl.swift */,
 				282BD4E62C8E223D00497103 /* MachServiceInfo.swift */,
-				282BD4E92C8E226100497103 /* example.m */,
 				282BD4DD2C8E21E100497103 /* main.swift */,
 				282BD4E82C8E226100497103 /* MachLaunchD-Bridging-Header.h */,
 			);
@@ -132,7 +129,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				282BD4EA2C8E226100497103 /* example.m in Sources */,
 				282BD4E52C8E222000497103 /* LaunchCtl.swift in Sources */,
 				282BD4DE2C8E21E100497103 /* main.swift in Sources */,
 				282BD4E72C8E223D00497103 /* MachServiceInfo.swift in Sources */,
