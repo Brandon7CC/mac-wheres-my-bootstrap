@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		287CDE692CF07028009A19A8 /* libbsm.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 287CDE672CF06FEB009A19A8 /* libbsm.tbd */; };
-		287CDE6A2CF0702F009A19A8 /* libEndpointSecurity.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 287CDE682CF06FF6009A19A8 /* libEndpointSecurity.tbd */; };
+		282BD4DE2C8E21E100497103 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282BD4DD2C8E21E100497103 /* main.swift */; };
+		282BD4E52C8E222000497103 /* LaunchCtl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282BD4E42C8E222000497103 /* LaunchCtl.swift */; };
+		282BD4E72C8E223D00497103 /* MachServiceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282BD4E62C8E223D00497103 /* MachServiceInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,9 +25,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		287CDE562CEE9D18009A19A8 /* XPC2Program */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = XPC2Program; sourceTree = BUILT_PRODUCTS_DIR; };
-		287CDE672CF06FEB009A19A8 /* libbsm.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbsm.tbd; path = usr/lib/libbsm.tbd; sourceTree = SDKROOT; };
-		287CDE682CF06FF6009A19A8 /* libEndpointSecurity.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libEndpointSecurity.tbd; path = usr/lib/libEndpointSecurity.tbd; sourceTree = SDKROOT; };
+		282BD4DA2C8E21E100497103 /* MachLaunchD */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MachLaunchD; sourceTree = BUILT_PRODUCTS_DIR; };
+		282BD4DD2C8E21E100497103 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		282BD4E42C8E222000497103 /* LaunchCtl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchCtl.swift; sourceTree = "<group>"; };
+		282BD4E62C8E223D00497103 /* MachServiceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MachServiceInfo.swift; sourceTree = "<group>"; };
+		282BD4E82C8E226100497103 /* MachLaunchD-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MachLaunchD-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -70,8 +73,10 @@
 		287CDE662CF06FEB009A19A8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				287CDE682CF06FF6009A19A8 /* libEndpointSecurity.tbd */,
-				287CDE672CF06FEB009A19A8 /* libbsm.tbd */,
+				282BD4E42C8E222000497103 /* LaunchCtl.swift */,
+				282BD4E62C8E223D00497103 /* MachServiceInfo.swift */,
+				282BD4DD2C8E21E100497103 /* main.swift */,
+				282BD4E82C8E226100497103 /* MachLaunchD-Bridging-Header.h */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -141,6 +146,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				282BD4E52C8E222000497103 /* LaunchCtl.swift in Sources */,
+				282BD4DE2C8E21E100497103 /* main.swift in Sources */,
+				282BD4E72C8E223D00497103 /* MachServiceInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
