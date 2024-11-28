@@ -3,18 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		282BD4DE2C8E21E100497103 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282BD4DD2C8E21E100497103 /* main.swift */; };
-		282BD4E52C8E222000497103 /* LaunchCtl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282BD4E42C8E222000497103 /* LaunchCtl.swift */; };
-		282BD4E72C8E223D00497103 /* MachServiceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282BD4E62C8E223D00497103 /* MachServiceInfo.swift */; };
-		282BD4EA2C8E226100497103 /* example.m in Sources */ = {isa = PBXBuildFile; fileRef = 282BD4E92C8E226100497103 /* example.m */; };
+		287CDE692CF07028009A19A8 /* libbsm.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 287CDE672CF06FEB009A19A8 /* libbsm.tbd */; };
+		287CDE6A2CF0702F009A19A8 /* libEndpointSecurity.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 287CDE682CF06FF6009A19A8 /* libEndpointSecurity.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		282BD4D82C8E21E100497103 /* CopyFiles */ = {
+		287CDE542CEE9D18009A19A8 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -26,123 +24,130 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		282BD4DA2C8E21E100497103 /* MachLaunchD */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MachLaunchD; sourceTree = BUILT_PRODUCTS_DIR; };
-		282BD4DD2C8E21E100497103 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		282BD4E42C8E222000497103 /* LaunchCtl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchCtl.swift; sourceTree = "<group>"; };
-		282BD4E62C8E223D00497103 /* MachServiceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MachServiceInfo.swift; sourceTree = "<group>"; };
-		282BD4E82C8E226100497103 /* MachLaunchD-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MachLaunchD-Bridging-Header.h"; sourceTree = "<group>"; };
-		282BD4E92C8E226100497103 /* example.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = example.m; sourceTree = "<group>"; };
+		287CDE562CEE9D18009A19A8 /* XPC2Program */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = XPC2Program; sourceTree = BUILT_PRODUCTS_DIR; };
+		287CDE672CF06FEB009A19A8 /* libbsm.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbsm.tbd; path = usr/lib/libbsm.tbd; sourceTree = SDKROOT; };
+		287CDE682CF06FF6009A19A8 /* libEndpointSecurity.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libEndpointSecurity.tbd; path = usr/lib/libEndpointSecurity.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		287CDE582CEE9D18009A19A8 /* XPC2Program */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = XPC2Program;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
-		282BD4D72C8E21E100497103 /* Frameworks */ = {
+		287CDE532CEE9D18009A19A8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				287CDE692CF07028009A19A8 /* libbsm.tbd in Frameworks */,
+				287CDE6A2CF0702F009A19A8 /* libEndpointSecurity.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		282BD4D12C8E21E100497103 = {
+		287CDE4D2CEE9D18009A19A8 = {
 			isa = PBXGroup;
 			children = (
-				282BD4DC2C8E21E100497103 /* MachLaunchD */,
-				282BD4DB2C8E21E100497103 /* Products */,
+				287CDE582CEE9D18009A19A8 /* XPC2Program */,
+				287CDE662CF06FEB009A19A8 /* Frameworks */,
+				287CDE572CEE9D18009A19A8 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		282BD4DB2C8E21E100497103 /* Products */ = {
+		287CDE572CEE9D18009A19A8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				282BD4DA2C8E21E100497103 /* MachLaunchD */,
+				287CDE562CEE9D18009A19A8 /* XPC2Program */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		282BD4DC2C8E21E100497103 /* MachLaunchD */ = {
+		287CDE662CF06FEB009A19A8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				282BD4E42C8E222000497103 /* LaunchCtl.swift */,
-				282BD4E62C8E223D00497103 /* MachServiceInfo.swift */,
-				282BD4E92C8E226100497103 /* example.m */,
-				282BD4DD2C8E21E100497103 /* main.swift */,
-				282BD4E82C8E226100497103 /* MachLaunchD-Bridging-Header.h */,
+				287CDE682CF06FF6009A19A8 /* libEndpointSecurity.tbd */,
+				287CDE672CF06FEB009A19A8 /* libbsm.tbd */,
 			);
-			path = MachLaunchD;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		282BD4D92C8E21E100497103 /* MachLaunchD */ = {
+		287CDE552CEE9D18009A19A8 /* XPC2Program */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 282BD4E12C8E21E100497103 /* Build configuration list for PBXNativeTarget "MachLaunchD" */;
+			buildConfigurationList = 287CDE5D2CEE9D18009A19A8 /* Build configuration list for PBXNativeTarget "XPC2Program" */;
 			buildPhases = (
-				282BD4D62C8E21E100497103 /* Sources */,
-				282BD4D72C8E21E100497103 /* Frameworks */,
-				282BD4D82C8E21E100497103 /* CopyFiles */,
+				287CDE522CEE9D18009A19A8 /* Sources */,
+				287CDE532CEE9D18009A19A8 /* Frameworks */,
+				287CDE542CEE9D18009A19A8 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = MachLaunchD;
-			productName = MachLaunchD;
-			productReference = 282BD4DA2C8E21E100497103 /* MachLaunchD */;
+			fileSystemSynchronizedGroups = (
+				287CDE582CEE9D18009A19A8 /* XPC2Program */,
+			);
+			name = XPC2Program;
+			packageProductDependencies = (
+			);
+			productName = XPC2Program;
+			productReference = 287CDE562CEE9D18009A19A8 /* XPC2Program */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		282BD4D22C8E21E100497103 /* Project object */ = {
+		287CDE4E2CEE9D18009A19A8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
-					282BD4D92C8E21E100497103 = {
+					287CDE552CEE9D18009A19A8 = {
 						CreatedOnToolsVersion = 16.0;
 						LastSwiftMigration = 1600;
 					};
 				};
 			};
-			buildConfigurationList = 282BD4D52C8E21E100497103 /* Build configuration list for PBXProject "MachLaunchD" */;
-			compatibilityVersion = "Xcode 15.0";
+			buildConfigurationList = 287CDE512CEE9D18009A19A8 /* Build configuration list for PBXProject "XPC2Program" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 282BD4D12C8E21E100497103;
-			productRefGroup = 282BD4DB2C8E21E100497103 /* Products */;
+			mainGroup = 287CDE4D2CEE9D18009A19A8;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 287CDE572CEE9D18009A19A8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				282BD4D92C8E21E100497103 /* MachLaunchD */,
+				287CDE552CEE9D18009A19A8 /* XPC2Program */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		282BD4D62C8E21E100497103 /* Sources */ = {
+		287CDE522CEE9D18009A19A8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				282BD4EA2C8E226100497103 /* example.m in Sources */,
-				282BD4E52C8E222000497103 /* LaunchCtl.swift in Sources */,
-				282BD4DE2C8E21E100497103 /* main.swift in Sources */,
-				282BD4E72C8E223D00497103 /* MachServiceInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		282BD4DF2C8E21E100497103 /* Debug */ = {
+		287CDE5B2CEE9D18009A19A8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -195,7 +200,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -205,7 +210,7 @@
 			};
 			name = Debug;
 		};
-		282BD4E02C8E21E100497103 /* Release */ = {
+		287CDE5C2CEE9D18009A19A8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -252,7 +257,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -260,31 +265,43 @@
 			};
 			name = Release;
 		};
-		282BD4E22C8E21E100497103 /* Debug */ = {
+		287CDE5E2CEE9D18009A19A8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4HMJQ7V3SX;
-				ENABLE_HARDENED_RUNTIME = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				CODE_SIGN_ENTITLEMENTS = XPC2Program/XPC2Program.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = YES;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = 4HMJQ7V3SX;
+				ENABLE_HARDENED_RUNTIME = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.swiftlydetecting.xpc2program;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "MachLaunchD/MachLaunchD-Bridging-Header.h";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "XPC2Program/XPC2Program-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
-		282BD4E32C8E21E100497103 /* Release */ = {
+		287CDE5F2CEE9D18009A19A8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4HMJQ7V3SX;
-				ENABLE_HARDENED_RUNTIME = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				CODE_SIGN_ENTITLEMENTS = XPC2Program/XPC2Program.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = YES;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = 4HMJQ7V3SX;
+				ENABLE_HARDENED_RUNTIME = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.swiftlydetecting.xpc2program;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "MachLaunchD/MachLaunchD-Bridging-Header.h";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "XPC2Program/XPC2Program-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -292,25 +309,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		282BD4D52C8E21E100497103 /* Build configuration list for PBXProject "MachLaunchD" */ = {
+		287CDE512CEE9D18009A19A8 /* Build configuration list for PBXProject "XPC2Program" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				282BD4DF2C8E21E100497103 /* Debug */,
-				282BD4E02C8E21E100497103 /* Release */,
+				287CDE5B2CEE9D18009A19A8 /* Debug */,
+				287CDE5C2CEE9D18009A19A8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		282BD4E12C8E21E100497103 /* Build configuration list for PBXNativeTarget "MachLaunchD" */ = {
+		287CDE5D2CEE9D18009A19A8 /* Build configuration list for PBXNativeTarget "XPC2Program" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				282BD4E22C8E21E100497103 /* Debug */,
-				282BD4E32C8E21E100497103 /* Release */,
+				287CDE5E2CEE9D18009A19A8 /* Debug */,
+				287CDE5F2CEE9D18009A19A8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 282BD4D22C8E21E100497103 /* Project object */;
+	rootObject = 287CDE4E2CEE9D18009A19A8 /* Project object */;
 }
