@@ -53,6 +53,7 @@ struct XPCConnectEvent: Identifiable, Codable {
                 )
                 break
             case ES_XPC_DOMAIN_TYPE_USER:
+                // TOOD: Should this be euid?
                 let uid = UInt64(audit_token_to_ruid(rawEvent.pointee.process.pointee.audit_token))
                 self.xpcDomain = .user(uid)
                 let launchCtl = LaunchCtl()
