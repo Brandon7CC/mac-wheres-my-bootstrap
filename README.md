@@ -3,14 +3,12 @@
 ## Overview
 The following repository contains samples for the 2024 Objective By the Sea v7.0 talk: ["Mac, Where's My Bootstrap?"](https://objectivebythesea.org/v7/talks.html#:~:text=Mac%2C%20Where%E2%80%99s%20my%20Bootstrap%3F.%20What%20is%20the%20Bootstrap%20Server%20and%20How%20Can%20You%20Talk%20To%20It%3F) by [Brandon Dalton](https://swiftly-detecting.notion.site/)(@PartyD0lphin) and [Csaba Fitzl](https://theevilbit.github.io) (@theevilbit). 
 
-Here you'll find the Xcode project XPC2Proc which will build to `XPC2Proc.app` and calls into our `LaunchCtl.swift`. This file enables programatic XPC service name to path resolution:
+This app demonstrates the ability to detect common classes of XPC exploits by validating code signing properties on both sides of the connection and pivoting off of macOS 14's [`XPC_CONNECT`](https://developer.apple.com/documentation/endpointsecurity/es_event_xpc_connect_t) Endpoint Security event.
+
+Here you'll find the Xcode project XPC2Proc which will build to `XPC2Proc.app` and calls into our `LaunchCtl.swift`. This file enables programatic XPC service name to path resolution we leverage for detection:
 ```swift
 func resolveProgramPath(from machServiceName: String, in domain: Domain) -> String
 ```
-
-## Mach Services vs. `launchd` Services
-* **`launchd` services**: such as Launch Daemons and Agents are jobs defined in a property list to be managed by the system. These jobs are backed by a single hosting program (see the `Program` key in the `Info.plist`). These programs can host multiple Mach Services to facilitate communication.
-* **Mach Services**: Low level atomic IPC channels managed / claimed by a program (see the `MachServices` / `SBMachServices` key in the `Info.plist`) 
 
 
 ## App usage
@@ -43,6 +41,10 @@ Follow along at `XPC2Proc/XPC2Proc/SwiftLaunchCtl/entry.swift`. These examples l
 {"id":"490E7007-281D-490A-BF4A-E02677DBAF8A","programPath":"/Applications/Microsoft Teams.app/Contents/XPCServices/com.microsoft.teams2.notificationcenter.xpc","xpcDomain":{"pid":{"_0":11009}},"xpcServiceName":"com.microsoft.teams2.notificationcenter"}
 
 ```
+
+## Mach Services vs. `launchd` Services
+* **`launchd` services**: such as Launch Daemons and Agents are jobs defined in a property list to be managed by the system. These jobs are backed by a single hosting program (see the `Program` key in the `Info.plist`). These programs can host multiple Mach Services to facilitate communication.
+* **Mach Services**: Low level atomic IPC channels managed / claimed by a program (see the `MachServices` / `SBMachServices` key in the `Info.plist`) 
 
 ### Query launchd
 Follow along at `XPC2Proc/XPC2Proc/SwiftLaunchCtl/entry.swift` (see line 66 onwards). You'll need to modify the code like so:
