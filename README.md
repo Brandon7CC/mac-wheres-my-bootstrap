@@ -20,6 +20,9 @@ func resolveProgramPath(from machServiceName: String, in domain: Domain) -> Stri
     3. Test a detection with: `./tests/bin/xpcConnTest com.xpc.example.agent.hello`
 
 
+![Screenshot](https://github.com/Brandon7CC/mac-wheres-my-bootstrap/blob/main/resources/uiuxdetect.png)
+
+
 ---
 
 ## Programatic examples
