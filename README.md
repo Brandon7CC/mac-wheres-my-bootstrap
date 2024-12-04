@@ -1,19 +1,33 @@
 # "Mac, Where's My Bootstrap?"
 
 ## Overview
-The following repository contains samples for the 2024 Objective By the Sea v7.0 talk: ["Mac, Where's My Bootstrap?"](https://objectivebythesea.org/v7/talks.html#:~:text=Mac%2C%20Where%E2%80%99s%20my%20Bootstrap%3F.%20What%20is%20the%20Bootstrap%20Server%20and%20How%20Can%20You%20Talk%20To%20It%3F). Here you'll find `SwiftLaunchCtl` which enables programatic Mach service name to path resolution. 
+The following repository contains samples for the 2024 Objective By the Sea v7.0 talk: ["Mac, Where's My Bootstrap?"](https://objectivebythesea.org/v7/talks.html#:~:text=Mac%2C%20Where%E2%80%99s%20my%20Bootstrap%3F.%20What%20is%20the%20Bootstrap%20Server%20and%20How%20Can%20You%20Talk%20To%20It%3F) by [Brandon Dalton](https://swiftly-detecting.notion.site/)(@PartyD0lphin) and [Csaba Fitzl](https://theevilbit.github.io) (@theevilbit). 
+
+Here you'll find the Xcode project XPC2Proc which will build to `XPC2Proc.app` and calls into our `LaunchCtl.swift`. This file enables programatic XPC service name to path resolution:
+```swift
+func resolveProgramPath(from machServiceName: String, in domain: Domain) -> String
+```
 
 ## Mach Services vs. `launchd` Services
 * **`launchd` services**: such as Launch Daemons and Agents are jobs defined in a property list to be managed by the system. These jobs are backed by a single hosting program (see the `Program` key in the `Info.plist`). These programs can host multiple Mach Services to facilitate communication.
 * **Mach Services**: Low level atomic IPC channels managed / claimed by a program (see the `MachServices` / `SBMachServices` key in the `Info.plist`) 
 
 
-## Usage
+## App usage
+1. Grab a copy from the releases page
+2. Since this app leverages ES it needs to be run as root with FDA on the hosting process (e.g. `Terminal.app`): `sudo XPC2Proc.app/Contents/MacOS/XPC2Proc`
+3. Optionally, you can test a detection.
+    1. Switch to the build directory: `tests/build/`
+    2. Compile the test with `tests/build/build.sh`
+    3. Test a detection with: `./tests/bin/xpcConnTest com.xpc.example.agent.hello`
 
-Running main.swift will execute an ES client to auto resolve service endpoints.
 
-### Output
-**SMAppService** example: `com.xpc.example.agent.hello`
+---
+
+## Programatic examples
+Follow along at `XPC2Proc/XPC2Proc/SwiftLaunchCtl/entry.swift`. These examples leverage an ES client as well (from the cmdl).
+
+### **SMAppService** example: `com.xpc.example.agent.hello`
 ```json
 {"id":"5C57EA67-91BB-407D-8466-9CCFDAD065F5","programPath":"/System/Library/PrivateFrameworks/TextInputUIMacHelper.framework/Versions/A/XPCServices/CursorUIViewService.xpc/Contents/MacOS/CursorUIViewService","xpcDomain":{"user":{"_0":501}},"xpcServiceName":"com.apple.TextInputUI.xpc.CursorUIViewService"}
 {"id":"8C569FE0-6DF8-4154-BCB5-92F1962C2D2F","programPath":"/usr/sbin/cfprefsd","xpcDomain":{"system":{}},"xpcServiceName":"com.apple.cfprefsd.daemon"}
@@ -21,7 +35,7 @@ Running main.swift will execute an ES client to auto resolve service endpoints.
 {"id":"98D6EC49-5006-4E26-8248-0A9453052F28","programPath":"/System/Library/PrivateFrameworks/TextInputUIMacHelper.framework/Versions/A/XPCServices/CursorUIViewService.xpc/Contents/MacOS/CursorUIViewService","xpcDomain":{"user":{"_0":501}},"xpcServiceName":"com.apple.TextInputUI.xpc.CursorUIViewService"}
 ```
 
-**Microsoft Teams** example: `com.microsoft.teams2.notificationcenter`
+### **Microsoft Teams** example: `com.microsoft.teams2.notificationcenter`
 ```json
 {"id":"7C484C9A-92C9-4213-AC9B-D3A96AFF0CA4","programPath":"/System/Library/PrivateFrameworks/TCC.framework/Support/tccd","xpcDomain":{"system":{}},"xpcServiceName":"com.apple.tccd.system"}
 {"id":"76598196-F791-4525-8379-6106E5B07B07","programPath":"/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/HIServices.framework/Versions/A/XPCServices/com.apple.hiservices-xpcservice.xpc/Contents/MacOS/com.apple.hiservices-xpcservice","xpcDomain":{"user":{"_0":501}},"xpcServiceName":"com.apple.hiservices-xpcservice"}
@@ -31,6 +45,8 @@ Running main.swift will execute an ES client to auto resolve service endpoints.
 ```
 
 ### Query launchd
+Follow along at `XPC2Proc/XPC2Proc/SwiftLaunchCtl/entry.swift` (see line 66 onwards). You'll need to modify the code like so:
+
 ```swift
 let launchCtl = LaunchCtl()
 //

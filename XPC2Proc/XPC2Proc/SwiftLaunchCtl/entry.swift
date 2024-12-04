@@ -1,44 +1,52 @@
+//
+//  entry.swift
+//  XPC2Program
+//
+//  Created by Brandon Dalton on 11/28/24.
+//
+
+
+
 import Foundation
 import OSLog
 
 let log = Logger(subsystem: "com.swiftlydetecting.xpc2program", category: "debug")
 
 
-// MARK: -- ENTRY
+// MARK: -- SwiftUI
 
+/// Add incoming connection events to our tracked list
+func uiLogger(xpcEvent: XPCConnectEvent, viewModel: EventViewModel) {
+    viewModel.addEvent(xpcEvent) // Add the event to the ViewModel
+}
 
-// Implement a very simple logger -- here is where your events will be printed.
-func logger(jsonEvent: String) {
-    let filterApple = false
-    
-    if filterApple && !jsonEvent.contains("\"xpcServiceName\":\"com.apple") {
-        if let json = try? JSONSerialization.jsonObject(with: jsonEvent.data(using: .utf8)!),
-           let jsonData = try? JSONSerialization.data(
-            withJSONObject: json,
-            options: [.sortedKeys, .withoutEscapingSlashes]
-           ) {
-            print(String(decoding: jsonData, as: UTF8.self))
-        } else {
-            log.error("json event malformed")
-        }
-    } else {
-        if let json = try? JSONSerialization.jsonObject(with: jsonEvent.data(using: .utf8)!),
-           let jsonData = try? JSONSerialization.data(
-            withJSONObject: json,
-            options: [.sortedKeys, .withoutEscapingSlashes]
-           ) {
-            print(String(decoding: jsonData, as: UTF8.self))
-        } else {
-            log.error("json event malformed")
-        }
+/// Start the ES client
+func startResolutionWithLogger(viewModel: EventViewModel) -> OpaquePointer? {
+    let esClientManager = EndpointSecurityClientManager()
+    let esClient = esClientManager.bootupESClient { event in
+        uiLogger(xpcEvent: event, viewModel: viewModel)
     }
+    
+    if esClient == nil {
+        log.error("[ES CLIENT ERROR] Error creating the endpoint security client!")
+        exit(EXIT_FAILURE)
+    }
+    
+    return esClient
 }
 
 
 
+// MARK: -- CMDL
+
+
+func eventLogger(xpcEvent: XPCConnectEvent) {
+    print(xpcEvent)
+}
+
 func bootupESClientWithLogger() -> OpaquePointer? {
     let esClientManager = EndpointSecurityClientManager()
-    let esClient = esClientManager.bootupESClient(completion: logger)
+    let esClient = esClientManager.bootupESClient(completion: eventLogger)
     
     if esClient == nil {
         log.error("[ES CLIENT ERROR] Error creating the endpoint security client!")
@@ -58,10 +66,11 @@ func waitForExit() {
     dispatchMain()
 }
 
-let esClient = bootupESClientWithLogger()
+//let esClient = bootupESClientWithLogger()
+//
+//// Simple `ctrl+c` to exit
+//waitForExit()
 
-// Simple `ctrl+c` to exit
-waitForExit()
 
 //let launchCtl = LaunchCtl()
 //

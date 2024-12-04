@@ -7,76 +7,59 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		282BD4DE2C8E21E100497103 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282BD4DD2C8E21E100497103 /* main.swift */; };
-		282BD4E52C8E222000497103 /* LaunchCtl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282BD4E42C8E222000497103 /* LaunchCtl.swift */; };
-		282BD4E72C8E223D00497103 /* MachServiceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282BD4E62C8E223D00497103 /* MachServiceInfo.swift */; };
+		280853AA2CFE31220029E289 /* libEndpointSecurity.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 280853A92CFE311C0029E289 /* libEndpointSecurity.tbd */; };
+		280853AC2CFE31360029E289 /* libbsm.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 280853AB2CFE31300029E289 /* libbsm.tbd */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		287CDE542CEE9D18009A19A8 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		282BD4DA2C8E21E100497103 /* MachLaunchD */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MachLaunchD; sourceTree = BUILT_PRODUCTS_DIR; };
-		282BD4DD2C8E21E100497103 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		282BD4E42C8E222000497103 /* LaunchCtl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchCtl.swift; sourceTree = "<group>"; };
-		282BD4E62C8E223D00497103 /* MachServiceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MachServiceInfo.swift; sourceTree = "<group>"; };
-		282BD4E82C8E226100497103 /* MachLaunchD-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MachLaunchD-Bridging-Header.h"; sourceTree = "<group>"; };
+		2808537F2CFCDA970029E289 /* XPC2Proc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XPC2Proc.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		280853A92CFE311C0029E289 /* libEndpointSecurity.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libEndpointSecurity.tbd; path = usr/lib/libEndpointSecurity.tbd; sourceTree = SDKROOT; };
+		280853AB2CFE31300029E289 /* libbsm.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbsm.tbd; path = usr/lib/libbsm.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		287CDE582CEE9D18009A19A8 /* XPC2Program */ = {
+		280853812CFCDA970029E289 /* XPC2Proc */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = XPC2Program;
+			path = XPC2Proc;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		287CDE532CEE9D18009A19A8 /* Frameworks */ = {
+		2808537C2CFCDA970029E289 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				287CDE692CF07028009A19A8 /* libbsm.tbd in Frameworks */,
-				287CDE6A2CF0702F009A19A8 /* libEndpointSecurity.tbd in Frameworks */,
+				280853AA2CFE31220029E289 /* libEndpointSecurity.tbd in Frameworks */,
+				280853AC2CFE31360029E289 /* libbsm.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		287CDE4D2CEE9D18009A19A8 = {
+		280853762CFCDA970029E289 = {
 			isa = PBXGroup;
 			children = (
-				287CDE582CEE9D18009A19A8 /* XPC2Program */,
-				287CDE662CF06FEB009A19A8 /* Frameworks */,
-				287CDE572CEE9D18009A19A8 /* Products */,
+				280853812CFCDA970029E289 /* XPC2Proc */,
+				280853A82CFE31170029E289 /* Frameworks */,
+				280853802CFCDA970029E289 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		287CDE572CEE9D18009A19A8 /* Products */ = {
+		280853802CFCDA970029E289 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				287CDE562CEE9D18009A19A8 /* XPC2Program */,
+				2808537F2CFCDA970029E289 /* XPC2Proc.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		287CDE662CF06FEB009A19A8 /* Frameworks */ = {
+		280853A82CFE31170029E289 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				282BD4E42C8E222000497103 /* LaunchCtl.swift */,
-				282BD4E62C8E223D00497103 /* MachServiceInfo.swift */,
-				282BD4DD2C8E21E100497103 /* main.swift */,
-				282BD4E82C8E226100497103 /* MachLaunchD-Bridging-Header.h */,
+				280853AB2CFE31300029E289 /* libbsm.tbd */,
+				280853A92CFE311C0029E289 /* libEndpointSecurity.tbd */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -84,78 +67,85 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		287CDE552CEE9D18009A19A8 /* XPC2Program */ = {
+		2808537E2CFCDA970029E289 /* XPC2Proc */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 287CDE5D2CEE9D18009A19A8 /* Build configuration list for PBXNativeTarget "XPC2Program" */;
+			buildConfigurationList = 2808538E2CFCDA980029E289 /* Build configuration list for PBXNativeTarget "XPC2Proc" */;
 			buildPhases = (
-				287CDE522CEE9D18009A19A8 /* Sources */,
-				287CDE532CEE9D18009A19A8 /* Frameworks */,
-				287CDE542CEE9D18009A19A8 /* CopyFiles */,
+				2808537B2CFCDA970029E289 /* Sources */,
+				2808537C2CFCDA970029E289 /* Frameworks */,
+				2808537D2CFCDA970029E289 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				287CDE582CEE9D18009A19A8 /* XPC2Program */,
+				280853812CFCDA970029E289 /* XPC2Proc */,
 			);
-			name = XPC2Program;
+			name = XPC2Proc;
 			packageProductDependencies = (
 			);
-			productName = XPC2Program;
-			productReference = 287CDE562CEE9D18009A19A8 /* XPC2Program */;
-			productType = "com.apple.product-type.tool";
+			productName = XPC2Proc;
+			productReference = 2808537F2CFCDA970029E289 /* XPC2Proc.app */;
+			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		287CDE4E2CEE9D18009A19A8 /* Project object */ = {
+		280853772CFCDA970029E289 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
-					287CDE552CEE9D18009A19A8 = {
+					2808537E2CFCDA970029E289 = {
 						CreatedOnToolsVersion = 16.0;
 						LastSwiftMigration = 1600;
 					};
 				};
 			};
-			buildConfigurationList = 287CDE512CEE9D18009A19A8 /* Build configuration list for PBXProject "XPC2Program" */;
+			buildConfigurationList = 2808537A2CFCDA970029E289 /* Build configuration list for PBXProject "XPC2Proc" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 287CDE4D2CEE9D18009A19A8;
+			mainGroup = 280853762CFCDA970029E289;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 287CDE572CEE9D18009A19A8 /* Products */;
+			productRefGroup = 280853802CFCDA970029E289 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				287CDE552CEE9D18009A19A8 /* XPC2Program */,
+				2808537E2CFCDA970029E289 /* XPC2Proc */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		2808537D2CFCDA970029E289 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
-		287CDE522CEE9D18009A19A8 /* Sources */ = {
+		2808537B2CFCDA970029E289 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				282BD4E52C8E222000497103 /* LaunchCtl.swift in Sources */,
-				282BD4DE2C8E21E100497103 /* main.swift in Sources */,
-				282BD4E72C8E223D00497103 /* MachServiceInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		287CDE5B2CEE9D18009A19A8 /* Debug */ = {
+		2808538C2CFCDA980029E289 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -208,7 +198,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.5;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -218,7 +208,7 @@
 			};
 			name = Debug;
 		};
-		287CDE5C2CEE9D18009A19A8 /* Release */ = {
+		2808538D2CFCDA980029E289 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -265,7 +255,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.5;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -273,43 +263,63 @@
 			};
 			name = Release;
 		};
-		287CDE5E2CEE9D18009A19A8 /* Debug */ = {
+		2808538F2CFCDA980029E289 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = XPC2Program/XPC2Program.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
-				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = YES;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=macosx*]" = 4HMJQ7V3SX;
-				ENABLE_HARDENED_RUNTIME = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.swiftlydetecting.xpc2program;
+				CODE_SIGN_ENTITLEMENTS = XPC2Proc/XPC2Proc.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"XPC2Proc/Preview Content\"";
+				DEVELOPMENT_TEAM = 4HMJQ7V3SX;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.swiftlydetecting.XPC2Proc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "XPC2Program/XPC2Program-Bridging-Header.h";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "XPC2Proc/XPC2Proc-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
-		287CDE5F2CEE9D18009A19A8 /* Release */ = {
+		280853902CFCDA980029E289 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = XPC2Program/XPC2Program.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
-				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = YES;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=macosx*]" = 4HMJQ7V3SX;
-				ENABLE_HARDENED_RUNTIME = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.swiftlydetecting.xpc2program;
+				CODE_SIGN_ENTITLEMENTS = XPC2Proc/XPC2Proc.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"XPC2Proc/Preview Content\"";
+				DEVELOPMENT_TEAM = 4HMJQ7V3SX;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.swiftlydetecting.XPC2Proc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "XPC2Program/XPC2Program-Bridging-Header.h";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "XPC2Proc/XPC2Proc-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -317,25 +327,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		287CDE512CEE9D18009A19A8 /* Build configuration list for PBXProject "XPC2Program" */ = {
+		2808537A2CFCDA970029E289 /* Build configuration list for PBXProject "XPC2Proc" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				287CDE5B2CEE9D18009A19A8 /* Debug */,
-				287CDE5C2CEE9D18009A19A8 /* Release */,
+				2808538C2CFCDA980029E289 /* Debug */,
+				2808538D2CFCDA980029E289 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		287CDE5D2CEE9D18009A19A8 /* Build configuration list for PBXNativeTarget "XPC2Program" */ = {
+		2808538E2CFCDA980029E289 /* Build configuration list for PBXNativeTarget "XPC2Proc" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				287CDE5E2CEE9D18009A19A8 /* Debug */,
-				287CDE5F2CEE9D18009A19A8 /* Release */,
+				2808538F2CFCDA980029E289 /* Debug */,
+				280853902CFCDA980029E289 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 287CDE4E2CEE9D18009A19A8 /* Project object */;
+	rootObject = 280853772CFCDA970029E289 /* Project object */;
 }

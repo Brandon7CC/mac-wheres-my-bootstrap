@@ -9,6 +9,18 @@ import Foundation
 
 
 final class LaunchCtl {
+    /// Default allocate 1MB of space
+    private let vmShmemSize: vm_size_t = 0x100000
+    private var vmShmemMemory: vm_address_t = 0
+    
+    /// There are two primary operations here we're working with. These are:
+    /// - Service targets (requiring the service name) or
+    /// - Domain targets (specifying a whole domain)
+    ///
+    /// We then specify the values for the XPC dict `launchd` expects:
+    ///  - `routine`
+    ///  - and `subsystem`
+    ///
     enum Operation {
         case printServiceTarget(serviceName: String)
         case printDomainTarget
@@ -32,11 +44,8 @@ final class LaunchCtl {
         }
     }
     
-    /// Default allocate 1MB of space
-    private let vmShmemSize: vm_size_t = 0x100000
-    private var vmShmemMemory: vm_address_t = 0
-    
     /// Given a PID what's the path of the program's image?
+    ///
     func getProgramPath(for pid: Int32) -> String? {
         let PROC_PIDPATHINFO_MAXSIZE = 4096
         var pathBuffer = [CChar](repeating: 0, count: PROC_PIDPATHINFO_MAXSIZE)
@@ -53,6 +62,7 @@ final class LaunchCtl {
     /// - The service infomation
     /// - The services program path (if found)
     /// - and the Mach endpoints advertised by the service target
+    ///
     func fetchServiceTarget(for service: Service, in domain: Domain) -> ServiceTarget? {
         if let response = executeLaunchdRequest(
             domain: domain,
@@ -82,6 +92,7 @@ final class LaunchCtl {
     }
     
     /// Returns the service target by a given service label alone (and no handle / pid)
+    ///
     func fetchServiceTarget(by label: String, in domain: Domain) -> ServiceTarget? {
         if let response = executeLaunchdRequest(
             domain: domain,
@@ -99,6 +110,7 @@ final class LaunchCtl {
     
     /// Attempts to resolve a Mach service name in a given domain to its program path.
     /// There are two primary logic branches depending on the domain specified.
+    ///
     func resolveProgramPath(from machServiceName: String, in domain: Domain) -> String {
         // If the user is looking up in the per-pid domain. Use our shortcut.
         if case .pid = domain {
@@ -195,6 +207,7 @@ final class LaunchCtl {
     }
 
     /// Executes a launchd request based on specified domain and operation.
+    ///
     func executeLaunchdRequest(domain: Domain, operation: Operation) -> String? {
         let message = constructMessage(
             handle: domain.handle,
@@ -212,6 +225,7 @@ final class LaunchCtl {
     }
 
     /// Overload: Executes a launchd request based on explicit parameters.
+    ///
     func executeLaunchdRequest(handle: UInt64, type: UInt64, routine: UInt64, subsystem: UInt64, name: String?) -> String? {
         let message = constructMessage(
             handle: handle,
@@ -222,13 +236,20 @@ final class LaunchCtl {
         )
         return sendMessage(message)
     }
-
+    
+    /// Constructs our XPC dictionary message (see slide 25 of our talk or table 13-17 from MOXiI Vol 1)
+    /// `type`: The domain we're targeting
+    /// `handle`: UID, ASID, or PID
+    /// `subsystem`: Service / domain targets
+    /// `routine`: The specific operation like `print` for service target / domain target
+    /// `name`: Optional depending on if we're working with a service target.
+    ///
     private func constructMessage(handle: UInt64, type: UInt64, routine: UInt64, subsystem: UInt64, name: String?) -> xpc_object_t {
         let message = xpc_dictionary_create(nil, nil, 0)
-        xpc_dictionary_set_uint64(message, "handle", handle)
         xpc_dictionary_set_uint64(message, "type", type)
-        xpc_dictionary_set_uint64(message, "routine", routine)
+        xpc_dictionary_set_uint64(message, "handle", handle)
         xpc_dictionary_set_uint64(message, "subsystem", subsystem)
+        xpc_dictionary_set_uint64(message, "routine", routine)
         if let name = name {
             xpc_dictionary_set_string(message, "name", name)
         }
@@ -236,34 +257,32 @@ final class LaunchCtl {
         allocateSharedMemory(for: message)
         return message
     }
-
+    
+    
+    /// We need to allocate a shared memory region for `launchd` to write our response.
+    ///
     private func allocateSharedMemory(for message: xpc_object_t) {
         let result = vm_allocate(mach_task_self_, &vmShmemMemory, vmShmemSize, VM_FLAGS_ANYWHERE)
         guard result == KERN_SUCCESS else {
-            fatalError("Failed to allocate shared memory: \(String(cString: mach_error_string(result)))")
+            fatalError("Failed to allocate the shared memory region: \(String(cString: mach_error_string(result)))")
         }
         let shmem = xpc_shmem_create(UnsafeMutableRawPointer(bitPattern: UInt(vmShmemMemory))!, Int(vmShmemSize))
         xpc_dictionary_set_value(message, "shmem", shmem)
     }
 
     private func sendMessage(_ message: xpc_object_t) -> String? {
-        var ports: UnsafeMutablePointer<mach_port_t>?
-        var portCount: mach_msg_type_number_t = 0
-        let result = mach_ports_lookup(mach_task_self_, &ports, &portCount)
-        guard result == KERN_SUCCESS, let bootstrapPort = ports?.pointee else {
-            fatalError("Failed to lookup bootstrap port: \(String(cString: mach_error_string(result)))")
-        }
-
-        let pipe = xpc_pipe_create_from_port(bootstrapPort, 0)
+        let pipe = xpc_pipe_create_from_port(bootstrap_port, 0)
         var reply: xpc_object_t?
         let error = xpc_pipe_routine(pipe, message, &reply)
+        
         guard error == 0, let response = reply else {
-            log.error("Error sending message: \(String(cString: xpc_strerror(error)))")
+            log.error("Error sending XPC message: \(String(cString: xpc_strerror(error)))")
             return nil
         }
-
+        
         return parseResponse(from: response)
     }
+
 
     private func parseResponse(from reply: xpc_object_t) -> String? {
         guard let shmemPointer = UnsafeMutableRawPointer(bitPattern: UInt(vmShmemMemory)) else { return nil }

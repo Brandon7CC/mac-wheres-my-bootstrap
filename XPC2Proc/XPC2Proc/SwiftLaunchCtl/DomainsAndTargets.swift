@@ -8,7 +8,7 @@
 import Foundation
 
 
-enum Domain: Codable {
+public enum Domain: Codable {
     case system
     case user(UInt64)    // UID
     case login(UInt64)   // ASID

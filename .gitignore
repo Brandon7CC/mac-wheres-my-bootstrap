@@ -63,11 +63,10 @@ fastlane/screenshots/**/*.png
 fastlane/test_output
 
 .DS_Store
-
-XPC2Program/XPC2Program/X2P
-
-XPC2Program/XPC2Program/File.txt
-
 *.xcscheme
 
-XPC2Program/XPC2Program.xcodeproj/project.xcworkspace/xcuserdata/brandondalton.xcuserdatad/
+tests/bin/*
+
+*.xcuserstate
+XPC2Proc/XPC2Proc.xcodeproj/xcuserdata/*
+XPC2Proc/XPC2Proc.xcodeproj/xcuserdata/brandondalton.xcuserdatad/xcschemes/xcschememanagement.plist
