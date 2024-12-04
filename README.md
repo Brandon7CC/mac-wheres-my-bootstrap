@@ -92,3 +92,20 @@ if let response = launchCtl.executeLaunchdRequest(handle: 100016, type: 1, routi
     print("Service Response (explicit parameters): \(response)")
 }
 ```
+
+---
+
+## References
+> Standing on the shoulders of giants
+
+* ["MacOS and iOS Internals (MOXiI) Volume I - User Mode"](https://newosxbook.com/home.html) by Jonathan Levin
+* ["Launchd: One Program to Rule them All"](https://www.youtube.com/watch?v=mLwn_TbBntI&t=1081s) / "Managing Processes with launchd" by Dave Zarzycki (author of launchd)
+* ["Approaching Escape Velocity with launchd"](https://www.youtube.com/watch?v=AjjeuGZNdFI&t=1715s)
+    * [Slides](https://bpb-us-e1.wpmucdn.com/sites.psu.edu/dist/4/24696/files/2016/06/psumac2016-95-Approaching-Escape-Velocity-with-Launchd.pdf)
+* ["Bits of Launchd"](https://saelo.github.io/presentations/bits_of_launchd.pdf) by Samuel Groß [(@5aelo)](https://x.com/5aelo)
+* ["Mach Ports"](https://docs.darlinghq.org/internals/macos-specifics/mach-ports.html) by Darling Docs
+* ["Baby's first Rust with extra steps (XPC, launchd, and FFI)!"](https://dev.to/machkernel/baby-s-first-rust-with-extra-steps-xpc-launchd-and-ffi-4aeb) by [David Stancu](https://github.com/mach-kernel)
+    * ["launchk: Cursive TUI that queries XPC to peek at launchd state"](https://github.com/mach-kernel/launchk) by David Stancu
+* ["Getting Started with launchd for Sys Admins"](https://www.youtube.com/watch?v=nqpyk5oVzAg&t=2637s) by Matt Hansen
+* [Red Canary Mac Monitor's AtomicESClient](https://github.com/redcanaryco/mac-monitor/tree/main/AtomicESClient) by [Brandon Dalton](https://swiftly-detecting.notion.site)
+
