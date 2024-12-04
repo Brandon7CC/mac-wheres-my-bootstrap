@@ -47,7 +47,7 @@ Follow along at `XPC2Proc/XPC2Proc/SwiftLaunchCtl/entry.swift`. These examples l
 * **Mach Services**: Low level atomic IPC channels managed / claimed by a program (see the `MachServices` / `SBMachServices` key in the `Info.plist`) 
 
 ### Query launchd
-Follow along at `XPC2Proc/XPC2Proc/SwiftLaunchCtl/entry.swift` (see line 66 onwards). You'll need to modify the code like so:
+Follow along at [`XPC2Proc/XPC2Proc/SwiftLaunchCtl/entry.swift`](https://github.com/Brandon7CC/mac-wheres-my-bootstrap/blob/e83978fe6b707b669247c424878931f0d599e13f/XPC2Proc/XPC2Proc/SwiftLaunchCtl/entry.swift#L75). You'll need to modify the code like so:
 
 ```swift
 let launchCtl = LaunchCtl()
