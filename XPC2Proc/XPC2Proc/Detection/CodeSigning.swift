@@ -107,8 +107,10 @@ func getSigningID(for processPath: String) -> String? {
     /// Create a reference to our static code to pull signing information
     var staticCode: SecStaticCode?
     let status = SecStaticCodeCreateWithPath(url as CFURL, SecCSFlags(), &staticCode)
+    
+    /// This will mean unsigned code...
     guard status == errSecSuccess, let code = staticCode else {
-        print("Error creating static code: \(status)")
+//        print("Error creating static code: \(status)")
         return nil
     }
 
@@ -117,7 +119,7 @@ func getSigningID(for processPath: String) -> String? {
     /// Pull the signing ID from `kSecCodeInfoIdentifier`
     guard copyStatus == errSecSuccess, let info = codeInfo as? [String: Any],
           let signingID = info[kSecCodeInfoIdentifier as String] as? String else {
-        print("Error copying signing information: \(copyStatus)")
+//        print("Error copying signing information: \(copyStatus)")
         return nil
     }
 
