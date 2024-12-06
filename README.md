@@ -29,6 +29,7 @@ func resolveProgramPath(from machServiceName: String, in domain: Domain) -> Stri
 Follow along at `XPC2Proc/XPC2Proc/SwiftLaunchCtl/entry.swift`. These examples leverage an ES client as well (from the cmdl).
 
 ### **SMAppService** example: `com.xpc.example.agent.hello`
+* Using the sample code provided by Apple here: [Updating your app package installer to use the new Service Management API](https://developer.apple.com/documentation/servicemanagement/updating-your-app-package-installer-to-use-the-new-service-management-api)
 ```json
 {"id":"5C57EA67-91BB-407D-8466-9CCFDAD065F5","programPath":"/System/Library/PrivateFrameworks/TextInputUIMacHelper.framework/Versions/A/XPCServices/CursorUIViewService.xpc/Contents/MacOS/CursorUIViewService","xpcDomain":{"user":{"_0":501}},"xpcServiceName":"com.apple.TextInputUI.xpc.CursorUIViewService"}
 {"id":"8C569FE0-6DF8-4154-BCB5-92F1962C2D2F","programPath":"/usr/sbin/cfprefsd","xpcDomain":{"system":{}},"xpcServiceName":"com.apple.cfprefsd.daemon"}
