@@ -120,30 +120,13 @@ final class LaunchCtl {
             ) {
                 let topLevelServices = parseServices(from: domainTargetResponse)
                 
-                /// Attempt to find a `launchd` service matching the Mach name
-                /// Then if we find one we'll print the service target and try to extract the path
-                if let service = topLevelServices.first(where: { $0.name == machServiceName }) {
-                    if let handle = service.handle {
-                        if handle != 0 {
-                            if let serviceTargetResponse = executeLaunchdRequest(
-                             domain: .pid(UInt64(handle)),
-                             operation: .printDomainTarget
-                            ) {
-                                if let path = parseProgramPath(
-                                    from: serviceTargetResponse
-                                )?.path {
-                                    return path
-                                } else {
-                                    return parseProgramPath(from: domainTargetResponse)?.path ?? ""
-                                }
-                            }
+                /// We'll need to look through each service's endpoints
+                for service in topLevelServices {
+                    if let serviceTarget = fetchServiceTarget(for: service, in: domain) {
+                        if serviceTarget.endpoints.contains(where: { $0.name == machServiceName }) == true {
+                            return serviceTarget.programPath
                         }
                     }
-                    /// For some reason we couldn't get a service handle (pid)
-                    return parseProgramPath(from: domainTargetResponse)?.path ?? ""
-                } else {
-                    /// For some reason there were no services in the domain or none matching the Mach service name
-                    return parseProgramPath(from: domainTargetResponse)?.path ?? ""
                 }
             }
         } else {
@@ -183,7 +166,7 @@ final class LaunchCtl {
                         }
                         break
                     case .user:         // Specified user domain
-                        // If we specified user then check the gui domain endpoints
+                        // If we specified user then check the subdomains (e.g. gui)
                         log.debug(
                             "Fetching gui/\(domain.handle)/\(disabledServiceLabel)\n"
                         )
