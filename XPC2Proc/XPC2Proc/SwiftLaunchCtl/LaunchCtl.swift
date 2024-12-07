@@ -24,6 +24,8 @@ final class LaunchCtl {
     enum Operation {
         case printServiceTarget(serviceName: String)
         case printDomainTarget
+
+        case getServiceInfo
         
         /// MOXiI Vol 1 (pg. 439)
         /// Routines mapped to launchctl functionality
@@ -31,6 +33,8 @@ final class LaunchCtl {
             switch self {
             case .printServiceTarget: return 708    // 0x2C4
             case .printDomainTarget: return 828     // 0x33C
+
+            case .getServiceInfo: return 712     // 0x2c8
             }
         }
         
@@ -40,6 +44,8 @@ final class LaunchCtl {
             switch self {
             case .printServiceTarget: return 2  // Service control
             case .printDomainTarget: return 3   // Domain APIs
+
+            case .getServiceInfo: return 2  // Service control
             }
         }
     }
@@ -90,7 +96,43 @@ final class LaunchCtl {
         
         return nil
     }
-    
+
+    func fetchServiceTarget(by label: String, in domainType: UInt64) -> ServiceTarget? {
+        let message = constructMessage(
+            handle: 0,
+            type: domainType,
+            routine: Operation.getServiceInfo.routine,
+            subsystem: Operation.getServiceInfo.subsystem,
+            name: label
+        )
+        guard
+        let reply = sendMessageWithoutParsing(message),
+        let serviceAttributes = xpc_dictionary_get_dictionary(reply, "attrs"),
+        let programPath = xpc_dictionary_get_string(serviceAttributes, "program"),
+        let xpcEndpoints = xpc_dictionary_get_array(serviceAttributes, "XPCServiceEndpoints")
+        else {
+            return nil
+        }
+        var serviceEndpoints: [Endpoint] = []
+        xpc_array_apply(xpcEndpoints) { _, endpoint in
+            guard
+            xpc_dictionary_get_bool(endpoint, "XPCServiceEndpointEvent") == false, // Skip event endpoints
+            let name = xpc_dictionary_get_string(endpoint, "XPCServiceEndpointName")
+            else {
+                return true // Continue
+            }
+            let endpointName = String(cString: name)
+            // The string value of the port is not exposed in the XPC dictionary.
+            serviceEndpoints.append(Endpoint(name: endpointName, port: ""))
+            return true // Keep iterating
+        }
+        return ServiceTarget(
+            service: Service(handle: nil, name: label),
+            programPath: String(cString: programPath),
+            endpoints: serviceEndpoints
+        )
+    }
+        
     /// Returns the service target by a given service label alone (and no handle / pid)
     ///
     func fetchServiceTarget(by label: String, in domain: Domain) -> ServiceTarget? {
@@ -227,7 +269,7 @@ final class LaunchCtl {
     /// `routine`: The specific operation like `print` for service target / domain target
     /// `name`: Optional depending on if we're working with a service target.
     ///
-    private func constructMessage(handle: UInt64, type: UInt64, routine: UInt64, subsystem: UInt64, name: String?) -> xpc_object_t {
+    private func constructMessage(handle: UInt64, type: UInt64, routine: UInt64, subsystem: UInt64, name: String?, withShmem: Bool = true) -> xpc_object_t {
         let message = xpc_dictionary_create(nil, nil, 0)
         xpc_dictionary_set_uint64(message, "type", type)
         xpc_dictionary_set_uint64(message, "handle", handle)
@@ -236,8 +278,9 @@ final class LaunchCtl {
         if let name = name {
             xpc_dictionary_set_string(message, "name", name)
         }
-
-        allocateSharedMemory(for: message)
+        if withShmem {
+            allocateSharedMemory(for: message)
+        }
         return message
     }
     
@@ -264,6 +307,19 @@ final class LaunchCtl {
         }
         
         return parseResponse(from: response)
+    }
+    
+    private func sendMessageWithoutParsing(_ message: xpc_object_t) -> xpc_object_t? {
+        let pipe = xpc_pipe_create_from_port(bootstrap_port, 0)
+        var reply: xpc_object_t?
+        let error = xpc_pipe_routine(pipe, message, &reply)
+        
+        guard error == 0, let response = reply else {
+            log.error("Error sending XPC message: \(String(cString: xpc_strerror(error)))")
+            return nil
+        }
+        
+        return response
     }
 
 
